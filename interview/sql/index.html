@@ -1,0 +1,794 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SQL | Kovui</title><meta name="keywords" content="sql"><meta name="author" content="rain"><meta name="copyright" content="rain"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一. 常用SQL语句1. SQL语句主要分为哪几类数据定义语言DDL（Data Ddefinition Language）CREATE，DROP，ALTER 主要为以上操作 即对逻辑结构等有操作的，其中包括表结构，视图和索引。 数据查询语言DQL（Data Query Language）SELECT 这个较为好理解 即查询操作，以select关键字。各种简单查询，连接查询等 都属于DQL。 数据操">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL">
+<meta property="og:url" content="http://example.com/interview/sql/index.html">
+<meta property="og:site_name" content="Kovui">
+<meta property="og:description" content="一. 常用SQL语句1. SQL语句主要分为哪几类数据定义语言DDL（Data Ddefinition Language）CREATE，DROP，ALTER 主要为以上操作 即对逻辑结构等有操作的，其中包括表结构，视图和索引。 数据查询语言DQL（Data Query Language）SELECT 这个较为好理解 即查询操作，以select关键字。各种简单查询，连接查询等 都属于DQL。 数据操">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-03-11T14:48:15.000Z">
+<meta property="article:modified_time" content="2021-03-11T14:55:42.190Z">
+<meta property="article:author" content="rain">
+<meta property="article:tag" content="sql">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/interview/sql/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-03-11 22:55:42'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">36</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 面试</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/go/advance_go/1_microservice/"><i class="fa-fw fas fa-music"></i><span> test</span></a></li><li><a class="site-page" href="/rust/hello/"><i class="fa-fw fas fa-music"></i><span> Mysql</span></a></li><li><a class="site-page" href="/interview/redis/"><i class="fa-fw fas fa-video"></i><span> Redis</span></a></li><li><a class="site-page" href="/interview/os/"><i class="fa-fw fas fa-music"></i><span> OS</span></a></li><li><a class="site-page" href="/interview/network/"><i class="fa-fw fas fa-music"></i><span> Network</span></a></li><li><a class="site-page" href="/interview/linux/"><i class="fa-fw fas fa-video"></i><span> Linux</span></a></li><li><a class="site-page" href="/interview/sql/"><i class="fa-fw fas fa-video"></i><span> SQL</span></a></li><li><a class="site-page" href="/interview/large-scale-data/"><i class="fa-fw fas fa-video"></i><span> LSD</span></a></li><li><a class="site-page" href="/interview/docker/"><i class="fa-fw fas fa-music"></i><span> Docker</span></a></li><li><a class="site-page" href="/interview/k8s/"><i class="fa-fw fas fa-video"></i><span> K8s</span></a></li><li><a class="site-page" href="/interview/Go/"><i class="fa-fw fas fa-music"></i><span> Go</span></a></li><li><a class="site-page" href="/interview/Rust/"><i class="fa-fw fas fa-video"></i><span> Rust</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Kovui</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 面试</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/go/advance_go/1_microservice/"><i class="fa-fw fas fa-music"></i><span> test</span></a></li><li><a class="site-page" href="/rust/hello/"><i class="fa-fw fas fa-music"></i><span> Mysql</span></a></li><li><a class="site-page" href="/interview/redis/"><i class="fa-fw fas fa-video"></i><span> Redis</span></a></li><li><a class="site-page" href="/interview/os/"><i class="fa-fw fas fa-music"></i><span> OS</span></a></li><li><a class="site-page" href="/interview/network/"><i class="fa-fw fas fa-music"></i><span> Network</span></a></li><li><a class="site-page" href="/interview/linux/"><i class="fa-fw fas fa-video"></i><span> Linux</span></a></li><li><a class="site-page" href="/interview/sql/"><i class="fa-fw fas fa-video"></i><span> SQL</span></a></li><li><a class="site-page" href="/interview/large-scale-data/"><i class="fa-fw fas fa-video"></i><span> LSD</span></a></li><li><a class="site-page" href="/interview/docker/"><i class="fa-fw fas fa-music"></i><span> Docker</span></a></li><li><a class="site-page" href="/interview/k8s/"><i class="fa-fw fas fa-video"></i><span> K8s</span></a></li><li><a class="site-page" href="/interview/Go/"><i class="fa-fw fas fa-music"></i><span> Go</span></a></li><li><a class="site-page" href="/interview/Rust/"><i class="fa-fw fas fa-video"></i><span> Rust</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">SQL</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-03-11T14:48:15.000Z" title="发表于 2021-03-11 22:48:15">2021-03-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-03-11T14:55:42.190Z" title="更新于 2021-03-11 22:55:42">2021-03-11</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="一-常用SQL语句"><a href="#一-常用SQL语句" class="headerlink" title="一. 常用SQL语句"></a>一. 常用SQL语句</h1><h2 id="1-SQL语句主要分为哪几类"><a href="#1-SQL语句主要分为哪几类" class="headerlink" title="1. SQL语句主要分为哪几类"></a>1. SQL语句主要分为哪几类</h2><p>数据定义语言DDL（Data Ddefinition Language）CREATE，DROP，ALTER</p>
+<p>主要为以上操作 即对逻辑结构等有操作的，其中包括表结构，视图和索引。</p>
+<p>数据查询语言DQL（Data Query Language）SELECT</p>
+<p>这个较为好理解 即查询操作，以select关键字。各种简单查询，连接查询等 都属于DQL。</p>
+<p>数据操纵语言DML（Data Manipulation Language）INSERT，UPDATE，DELETE</p>
+<p>主要为以上操作 即对数据进行操作的，对应上面所说的查询操作 DQL与DML共同构建了多数初级程序员常用的增删改查操作。而查询是较为特殊的一种 被划分到DQL中。</p>
+<p>数据控制功能DCL（Data Control Language）GRANT，REVOKE，COMMIT，ROLLBACK</p>
+<p>主要为以上操作 即对数据库安全性完整性等有操作的，可以简单的理解为权限控制等。</p>
+<h2 id="2-超键、候选键、主键、外键分别是什么？"><a href="#2-超键、候选键、主键、外键分别是什么？" class="headerlink" title="2. 超键、候选键、主键、外键分别是什么？"></a>2. 超键、候选键、主键、外键分别是什么？</h2><ul>
+<li>超键：在关系中能唯一标识元组的属性集称为关系模式的超键。一个属性可以为作为一个超键，多个属性组合在一起也可以作为一个超键。超键包含候选键和主键。</li>
+<li>候选键：是最小超键，即没有冗余元素的超键。</li>
+<li>主键：数据库表中对储存数据对象予以唯一和完整标识的数据列或属性的组合。一个数据列只能有一个主键，且主键的取值不能缺失，即不能为空值（Null）。</li>
+<li>外键：在一个表中存在的另一个表的主键称此表的外键。</li>
+</ul>
+<h2 id="3-SQL-约束有哪几种？"><a href="#3-SQL-约束有哪几种？" class="headerlink" title="3. SQL 约束有哪几种？"></a>3. SQL 约束有哪几种？</h2><blockquote>
+<p>SQL 约束有哪几种？</p>
+</blockquote>
+<ul>
+<li>NOT NULL: 用于控制字段的内容一定不能为空（NULL）。</li>
+<li>UNIQUE: 控件字段内容不能重复，一个表允许有多个 Unique 约束。</li>
+<li>PRIMARY KEY: 也是用于控件字段内容不能重复，但它在一个表只允许出现一个。</li>
+<li>FOREIGN KEY: 用于预防破坏表之间连接的动作，也能防止非法数据插入外键列，因为它必须是它指向的那个表中的值之一。</li>
+<li>CHECK: 用于控制字段的值范围。</li>
+</ul>
+<h2 id="4-六种关联查询"><a href="#4-六种关联查询" class="headerlink" title="4. 六种关联查询"></a>4. 六种关联查询</h2><ul>
+<li>交叉连接（CROSS JOIN）</li>
+<li>内连接（INNER JOIN）</li>
+<li>外连接（LEFT JOIN/RIGHT JOIN）</li>
+<li>联合查询（UNION与UNION ALL）</li>
+<li>全连接（FULL JOIN）</li>
+<li>交叉连接（CROSS JOIN）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM A,B(,C)或者SELECT * FROM A CROSS JOIN B (CROSS JOIN C)#没有任何关联条件，结果是笛卡尔积，结果集会很大，没有意义，很少使用内连接（INNER JOIN）SELECT * FROM A,B WHERE A.id&#x3D;B.id或者SELECT * FROM A INNER JOIN B ON A.id&#x3D;B.id多表中同时符合某种条件的数据记录的集合，INNER JOIN可以缩写为JOIN</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+<p>内连接分为三类</p>
+<ul>
+<li>等值连接：ON A.id=B.id</li>
+<li>不等值连接：ON A.id &gt; B.id</li>
+<li>自连接：SELECT * FROM A T1 INNER JOIN A T2 ON T1.id=T2.pid</li>
+</ul>
+<p>外连接（LEFT JOIN/RIGHT JOIN）</p>
+<ul>
+<li>左外连接：LEFT OUTER JOIN, 以左表为主，先查询出左表，按照ON后的关联条件匹配右表，没有匹配到的用NULL填充，可以简写成LEFT JOIN</li>
+<li>右外连接：RIGHT OUTER JOIN, 以右表为主，先查询出右表，按照ON后的关联条件匹配左表，没有匹配到的用NULL填充，可以简写成RIGHT JOIN</li>
+</ul>
+<p>联合查询（UNION与UNION ALL）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM A UNION SELECT * FROM B UNION ...</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>就是把多个结果集集中在一起，UNION前的结果为基准，需要注意的是联合查询的列数要相等，相同的记录行会合并</li>
+<li>如果使用UNION ALL，不会合并重复的记录行</li>
+<li>效率 UNION 高于 UNION ALL</li>
+</ul>
+<p>全连接（FULL JOIN）</p>
+<ul>
+<li>MySQL不支持全连接</li>
+<li>可以使用LEFT JOIN 和UNION和RIGHT JOIN联合使用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM A LEFT JOIN B ON A.id&#x3D;B.id UNIONSELECT * FROM A RIGHT JOIN B ON A.id&#x3D;B.id</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-表连接面试题"><a href="#4-表连接面试题" class="headerlink" title="4. 表连接面试题"></a>4. 表连接面试题</h2><p>例如有两个表</p>
+<p>表A:</p>
+<table>
+<thead>
+<tr>
+<th align="center">AID</th>
+<th align="center">Name</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">张三</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">李四</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">王五</td>
+</tr>
+</tbody></table>
+<p>表B:</p>
+<table>
+<thead>
+<tr>
+<th>BID</th>
+<th>Name</th>
+<th>Age</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>20</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>21</td>
+</tr>
+<tr>
+<td>3</td>
+<td>4</td>
+<td>22</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>表A的ID与表B的UID业务关联</p>
+<p>注意: 表A的AID=3 在 表B里没有关联</p>
+</blockquote>
+<ul>
+<li><p>内连接( join或者 inner join)</p>
+<p>  返回符合条件的tableA和tableB的数据</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Select</span> <span class="operator">*</span> <span class="keyword">from</span> tableA <span class="keyword">inner</span> <span class="keyword">join</span> tableB <span class="keyword">where</span> tableA.AID <span class="operator">=</span> tableB.UID</span><br></pre></td></tr></table></figure>
+
+<p>  结果:</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>AID</th>
+<th>Name</th>
+<th>BID</th>
+<th>UID</th>
+<th>Age</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>张三</td>
+<td>1</td>
+<td>1</td>
+<td>20</td>
+</tr>
+<tr>
+<td>2</td>
+<td>李四</td>
+<td>2</td>
+<td>2</td>
+<td>21</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>左连接(left join)</p>
+<p>  左连接是如果表A和表B查询的时候,先获得表A所有的数据,然后根据表A的每一条数据匹配B里的数据,如果没有,就列为空值(null)</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> tableA <span class="keyword">left</span> <span class="keyword">join</span> tableB <span class="keyword">on</span> tableB.UID <span class="operator">=</span> tableA.AID</span><br></pre></td></tr></table></figure>
+
+<p>  结果:</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>AID</th>
+<th>Name</th>
+<th>BID</th>
+<th>UID</th>
+<th>Age</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>张三</td>
+<td>1</td>
+<td>1</td>
+<td>20</td>
+</tr>
+<tr>
+<td>2</td>
+<td>李四</td>
+<td>2</td>
+<td>2</td>
+<td>21</td>
+</tr>
+<tr>
+<td>3</td>
+<td>王五</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+</tbody></table>
+<p>左表的数据全部查到,如果在表B里没有找到,那么表B的字段列为空值</p>
+<ul>
+<li><p>右连接 (right join)</p>
+<p>  与左连接正好相反,获取表B的数据,然后匹配A表的数据,如果没有的,列为空值(null)</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> tableA <span class="keyword">right</span> <span class="keyword">join</span> tableB <span class="keyword">on</span> tableB.UID <span class="operator">=</span> tableA.AID</span><br></pre></td></tr></table></figure>
+
+<p>  结果:</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>AID</th>
+<th>Name</th>
+<th>BID</th>
+<th>UID</th>
+<th>Age</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>张三</td>
+<td>1</td>
+<td>1</td>
+<td>20</td>
+</tr>
+<tr>
+<td>2</td>
+<td>李四</td>
+<td>2</td>
+<td>2</td>
+<td>21</td>
+</tr>
+<tr>
+<td>null</td>
+<td>王五</td>
+<td>3</td>
+<td>4</td>
+<td>22</td>
+</tr>
+</tbody></table>
+<p>右表的数据全部查到,如果在表A里没有找到,那么表A的字段列为空值</p>
+<ul>
+<li><p>完整外部连接</p>
+<p>  MySQL不支持完整外部连接</p>
+</li>
+<li><p>交叉连接 (cross join)</p>
+<p>  不带where条件的查询条件会产生连接所涉及的表的笛卡尔积</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> tableA <span class="keyword">cross</span> <span class="keyword">join</span> tableB</span><br></pre></td></tr></table></figure>
+
+<p>  等同于:</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Select</span> <span class="operator">*</span> <span class="keyword">from</span> tableA,tableB</span><br></pre></td></tr></table></figure>
+
+<p>  结果:</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>AID</th>
+<th>Name</th>
+<th>BID</th>
+<th>UID</th>
+<th>Age</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>张三</td>
+<td>1</td>
+<td>1</td>
+<td>20</td>
+</tr>
+<tr>
+<td>2</td>
+<td>李四</td>
+<td>1</td>
+<td>1</td>
+<td>20</td>
+</tr>
+<tr>
+<td>3</td>
+<td>王五</td>
+<td>1</td>
+<td>1</td>
+<td>20</td>
+</tr>
+<tr>
+<td>1</td>
+<td>张三</td>
+<td>2</td>
+<td>2</td>
+<td>21</td>
+</tr>
+<tr>
+<td>2</td>
+<td>李四</td>
+<td>2</td>
+<td>2</td>
+<td>21</td>
+</tr>
+<tr>
+<td>3</td>
+<td>王五</td>
+<td>2</td>
+<td>2</td>
+<td>21</td>
+</tr>
+<tr>
+<td>1</td>
+<td>张三</td>
+<td>3</td>
+<td>4</td>
+<td>22</td>
+</tr>
+<tr>
+<td>2</td>
+<td>李四</td>
+<td>3</td>
+<td>4</td>
+<td>22</td>
+</tr>
+<tr>
+<td>3</td>
+<td>王五</td>
+<td>3</td>
+<td>4</td>
+<td>22</td>
+</tr>
+</tbody></table>
+<h2 id="5-什么是子查询"><a href="#5-什么是子查询" class="headerlink" title="5. 什么是子查询"></a>5. 什么是子查询</h2><ol>
+<li>条件：一条SQL语句的查询结果做为另一条查询语句的条件或查询结果</li>
+<li>嵌套：多条SQL语句嵌套使用，内部的SQL查询语句称为子查询。</li>
+</ol>
+<h2 id="6-子查询的三种情况"><a href="#6-子查询的三种情况" class="headerlink" title="6. 子查询的三种情况"></a>6. 子查询的三种情况</h2><ol>
+<li>子查询是单行单列的情况：结果集是一个值，父查询使用：=、 &lt;、 &gt; 等运算符</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询工资最高的员工是谁？ </span></span><br><span class="line"><span class="keyword">select</span>  <span class="operator">*</span> <span class="keyword">from</span> employee <span class="keyword">where</span> salary<span class="operator">=</span>(<span class="keyword">select</span> <span class="built_in">max</span>(salary) <span class="keyword">from</span> employee);   </span><br><span class="line"><span class="number">12</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>子查询是多行单列的情况：结果集类似于一个数组，父查询使用：in 运算符</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询工资最高的员工是谁？ </span></span><br><span class="line"><span class="keyword">select</span>  <span class="operator">*</span> <span class="keyword">from</span> employee <span class="keyword">where</span> salary<span class="operator">=</span>(<span class="keyword">select</span> <span class="built_in">max</span>(salary) <span class="keyword">from</span> employee);    </span><br><span class="line"><span class="number">12</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>子查询是多行多列的情况：结果集类似于一张虚拟表，不能用于where条件，用于select子句中做为子表</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 1) 查询出2011年以后入职的员工信息</span></span><br><span class="line"><span class="comment">-- 2) 查询所有的部门信息，与上面的虚拟表中的信息比对，找出所有部门ID相等的员工。</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> dept d,  (<span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> employee <span class="keyword">where</span> join_date <span class="operator">&gt;</span> <span class="string">&#x27;2011-1-1&#x27;</span>) e <span class="keyword">where</span> e.dept_id <span class="operator">=</span>  d.id;    </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 使用表连接：</span></span><br><span class="line"><span class="keyword">select</span> d.<span class="operator">*</span>, e.<span class="operator">*</span> <span class="keyword">from</span>  dept d <span class="keyword">inner</span> <span class="keyword">join</span> employee e <span class="keyword">on</span> d.id <span class="operator">=</span> e.dept_id <span class="keyword">where</span> e.join_date <span class="operator">&gt;</span>  <span class="string">&#x27;2011-1-1&#x27;</span>  </span><br><span class="line"><span class="number">123456</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="7-mysql中-in-和-exists-区别"><a href="#7-mysql中-in-和-exists-区别" class="headerlink" title="7. mysql中 in 和 exists 区别"></a>7. mysql中 in 和 exists 区别</h2><p>mysql中的in语句是把外表和内表作hash 连接，而exists语句是对外表作loop循环，每次loop循环再对内表进行查询。一直大家都认为exists比in语句的效率要高，这种说法其实是不准确的。这个是要区分环境的。</p>
+<ol>
+<li>如果查询的两个表大小相当，那么用in和exists差别不大。</li>
+<li>如果两个表中一个较小，一个是大表，则子查询表大的用exists，子查询表小的用in。</li>
+<li>not in 和not exists：如果查询语句使用了not in，那么内外表都进行全表扫描，没有用到索引；而not extsts的子查询依然能用到表上的索引。所以无论那个表大，用not exists都比not in要快。</li>
+</ol>
+<h2 id="8-varchar与char的区别"><a href="#8-varchar与char的区别" class="headerlink" title="8. varchar与char的区别"></a>8. varchar与char的区别</h2><p><strong>char的特点</strong></p>
+<ul>
+<li>char表示定长字符串，长度是固定的；</li>
+<li>如果插入数据的长度小于char的固定长度时，则用空格填充；</li>
+<li>因为长度固定，所以存取速度要比varchar快很多，甚至能快50%，但正因为其长度固定，所以会占据多余的空间，是空间换时间的做法；</li>
+<li>对于char来说，最多能存放的字符个数为255，和编码无关</li>
+</ul>
+<p><strong>varchar的特点</strong></p>
+<ul>
+<li>varchar表示可变长字符串，长度是可变的；</li>
+<li>插入的数据是多长，就按照多长来存储；</li>
+<li>varchar在存取方面与char相反，它存取慢，因为长度不固定，但正因如此，不占据多余的空间，是时间换空间的做法；</li>
+<li>对于varchar来说，最多能存放的字符个数为65532</li>
+</ul>
+<p>总之，结合性能角度（char更快）和节省磁盘空间角度（varchar更小），具体情况还需具体来设计数据库才是妥当的做法。</p>
+<h2 id="10-varchar-50-中50的涵义"><a href="#10-varchar-50-中50的涵义" class="headerlink" title="10. varchar(50)中50的涵义"></a>10. varchar(50)中50的涵义</h2><p>最多存放50个字符，varchar(50)和(200)存储hello所占空间一样，但后者在排序时会消耗更多内存，因为order by col采用fixed_length计算col长度(memory引擎也一样)。在早期 MySQL 版本中， 50 代表字节数，现在代表字符数。</p>
+<h2 id="11-int-20-中20的涵义"><a href="#11-int-20-中20的涵义" class="headerlink" title="11. int(20)中20的涵义"></a>11. int(20)中20的涵义</h2><p>是指显示字符的长度。20表示最大显示宽度为20，但仍占4字节存储，存储范围不变；</p>
+<p>不影响内部存储，只是影响带 zerofill 定义的 int 时，前面补多少个 0，易于报表展示</p>
+<h2 id="12-mysql为什么这么设计"><a href="#12-mysql为什么这么设计" class="headerlink" title="12. mysql为什么这么设计"></a>12. mysql为什么这么设计</h2><p>对大多数应用没有意义，只是规定一些工具用来显示字符的个数；int(1)和int(20)存储和计算均一样；</p>
+<h2 id="13-mysql中int-10-和char-10-以及varchar-10-的区别"><a href="#13-mysql中int-10-和char-10-以及varchar-10-的区别" class="headerlink" title="13. mysql中int(10)和char(10)以及varchar(10)的区别"></a>13. mysql中int(10)和char(10)以及varchar(10)的区别</h2><ul>
+<li><p>int(10)的10表示显示的数据的长度，不是存储数据的大小；chart(10)和varchar(10)的10表示存储数据的大小，即表示存储多少个字符。</p>
+<p>  int(10) 10位的数据长度 9999999999，占32个字节，int型4位</p>
+</li>
+</ul>
+<ul>
+<li>char(10) 10位固定字符串，不足补空格 最多10个字符<br>  varchar(10) 10位可变字符串，不足补空格 最多10个字符</li>
+<li>char(10)表示存储定长的10个字符，不足10个就用空格补齐，占用更多的存储空间</li>
+<li>varchar(10)表示存储10个变长的字符，存储多少个就是多少个，空格也按一个字符存储，这一点是和char(10)的空格不同的，char(10)的空格表示占位不算一个字符</li>
+</ul>
+<h2 id="14-FLOAT和DOUBLE的区别是什么？"><a href="#14-FLOAT和DOUBLE的区别是什么？" class="headerlink" title="14. FLOAT和DOUBLE的区别是什么？"></a>14. FLOAT和DOUBLE的区别是什么？</h2><ul>
+<li>FLOAT类型数据可以存储至多8位十进制数，并在内存中占4字节。</li>
+<li>DOUBLE类型数据可以存储至多18位十进制数，并在内存中占8字节。</li>
+</ul>
+<h2 id="15-drop、delete与truncate的区别"><a href="#15-drop、delete与truncate的区别" class="headerlink" title="15. drop、delete与truncate的区别"></a>15. drop、delete与truncate的区别</h2><p>三者都表示删除，但是三者有一些差别：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Delete</th>
+<th>Truncate</th>
+<th>Drop</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td>属于DML</td>
+<td>属于DDL</td>
+<td>属于DDL</td>
+</tr>
+<tr>
+<td>回滚</td>
+<td>可回滚</td>
+<td>不可回滚</td>
+<td>不可回滚</td>
+</tr>
+<tr>
+<td>删除内容</td>
+<td>表结构还在，删除表的全部或者一部分数据行</td>
+<td>表结构还在，删除表中的所有数据</td>
+<td>从数据库中删除表，所有的数据行，索引和权限也会被删除</td>
+</tr>
+<tr>
+<td>删除速度</td>
+<td>删除速度慢，需要逐行删除</td>
+<td>删除速度快</td>
+<td>删除速度最快</td>
+</tr>
+</tbody></table>
+<p>因此，在不再需要一张表的时候，用drop；在想删除部分数据行时候，用delete；在保留表而删除所有数据的时候用truncate。</p>
+<h2 id="16-UNION与UNION-ALL的区别？"><a href="#16-UNION与UNION-ALL的区别？" class="headerlink" title="16. UNION与UNION ALL的区别？"></a>16. UNION与UNION ALL的区别？</h2><ul>
+<li>如果使用UNION ALL，不会合并重复的记录行</li>
+<li>效率 UNION 高于 UNION ALL</li>
+</ul>
+<h1 id="二-SQL优化"><a href="#二-SQL优化" class="headerlink" title="二. SQL优化"></a>二. SQL优化</h1><h2 id="1-如何定位及优化SQL语句的性能问题？创建的索引有没有被使用到-或者说怎么才可以知道这条语句运行很慢的原因？"><a href="#1-如何定位及优化SQL语句的性能问题？创建的索引有没有被使用到-或者说怎么才可以知道这条语句运行很慢的原因？" class="headerlink" title="1. 如何定位及优化SQL语句的性能问题？创建的索引有没有被使用到?或者说怎么才可以知道这条语句运行很慢的原因？"></a>1. 如何定位及优化SQL语句的性能问题？创建的索引有没有被使用到?或者说怎么才可以知道这条语句运行很慢的原因？</h2><p>对于低性能的SQL语句的定位，最重要也是最有效的方法就是使用执行计划，MySQL提供了explain命令来查看语句的执行计划。 我们知道，不管是哪种数据库，或者是哪种数据库引擎，在对一条SQL语句进行执行的过程中都会做很多相关的优化，<strong>对于查询语句，最重要的优化方式就是使用索引</strong>。 而<strong>执行计划，就是显示数据库引擎对于SQL语句的执行的详细情况，其中包含了是否使用索引，使用什么索引，使用的索引的相关信息等</strong>。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200310171131582.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RoaW5rV29u,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>执行计划包含的信息 <strong>id</strong> 有一组数字组成。表示一个查询中各个子查询的执行顺序;</p>
+<ul>
+<li>id相同执行顺序由上至下。</li>
+<li>id不同，id值越大优先级越高，越先被执行。</li>
+<li>id为null时表示一个结果集，不需要使用它查询，常出现在包含union等查询语句中。</li>
+</ul>
+<p><strong>select_type</strong> 每个子查询的查询类型，一些常见的查询类型。</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>select_type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>SIMPLE</td>
+<td>不包含任何子查询或union等查询</td>
+</tr>
+<tr>
+<td>2</td>
+<td>PRIMARY</td>
+<td>包含子查询最外层查询就显示为 PRIMARY</td>
+</tr>
+<tr>
+<td>3</td>
+<td>SUBQUERY</td>
+<td>在select或 where字句中包含的查询</td>
+</tr>
+<tr>
+<td>4</td>
+<td>DERIVED</td>
+<td>from字句中包含的查询</td>
+</tr>
+<tr>
+<td>5</td>
+<td>UNION</td>
+<td>出现在union后的查询语句中</td>
+</tr>
+<tr>
+<td>6</td>
+<td>UNION RESULT</td>
+<td>从UNION中获取结果集，例如上文的第三个例子</td>
+</tr>
+</tbody></table>
+<p><strong>table</strong> 查询的数据表，当从衍生表中查数据时会显示 x 表示对应的执行计划id <strong>partitions</strong> 表分区、表创建的时候可以指定通过那个列进行表分区。 举个例子：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tmp (</span><br><span class="line">    id <span class="type">int</span> unsigned <span class="keyword">not</span> <span class="keyword">null</span> AUTO_INCREMENT,</span><br><span class="line">    name <span class="type">varchar</span>(<span class="number">255</span>),</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (id)</span><br><span class="line">) engine <span class="operator">=</span> innodb</span><br><span class="line"><span class="keyword">partition</span> <span class="keyword">by</span> key (id) partitions <span class="number">5</span>;</span><br><span class="line"><span class="number">123456</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>type</strong>(非常重要，可以看到有没有走索引) 访问类型</p>
+<ul>
+<li>ALL 扫描全表数据</li>
+<li>index 遍历索引</li>
+<li>range 索引范围查找</li>
+<li>index_subquery 在子查询中使用 ref</li>
+<li>unique_subquery 在子查询中使用 eq_ref</li>
+<li>ref_or_null 对Null进行索引的优化的 ref</li>
+<li>fulltext 使用全文索引</li>
+<li>ref 使用非唯一索引查找数据</li>
+<li>eq_ref 在join查询中使用PRIMARY KEYorUNIQUE NOT NULL索引关联。</li>
+</ul>
+<p><strong>possible_keys</strong> 可能使用的索引，注意不一定会使用。查询涉及到的字段上若存在索引，则该索引将被列出来。当该列为 NULL时就要考虑当前的SQL是否需要优化了。</p>
+<p><strong>key</strong> 显示MySQL在查询中实际使用的索引，若没有使用索引，显示为NULL。</p>
+<p><strong>TIPS</strong>:查询中若使用了覆盖索引(覆盖索引：索引的数据覆盖了需要查询的所有数据)，则该索引仅出现在key列表中</p>
+<p><strong>key_length</strong> 索引长度</p>
+<p><strong>ref</strong> 表示上述表的连接匹配条件，即哪些列或常量被用于查找索引列上的值</p>
+<p><strong>rows</strong> 返回估算的结果集数目，并不是一个准确的值。</p>
+<p><strong>extra</strong> 的信息非常丰富，常见的有：</p>
+<ol>
+<li>Using index 使用覆盖索引</li>
+<li>Using where 使用了用where子句来过滤结果集</li>
+<li>Using filesort 使用文件排序，使用非索引列进行排序时出现，非常消耗性能，尽量优化。</li>
+<li>Using temporary 使用了临时表 sql优化的目标可以参考阿里开发手册</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">【推荐】SQL性能优化的目标：至少要达到 range 级别，要求是ref级别，如果可以是consts最好。 </span><br><span class="line">说明： </span><br><span class="line">1） consts 单表中最多只有一个匹配行（主键或者唯一索引），在优化阶段即可读取到数据。 </span><br><span class="line">2） ref 指的是使用普通的索引（normal index）。 </span><br><span class="line">3） range 对索引进行范围检索。 </span><br><span class="line">反例：explain表的结果，type&#x3D;index，索引物理文件全扫描，速度非常慢，这个index级别比较range还低，与全表扫描是小巫见大巫。</span><br><span class="line">123456</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-SQL的生命周期？"><a href="#2-SQL的生命周期？" class="headerlink" title="2. SQL的生命周期？"></a>2. SQL的生命周期？</h2><ol>
+<li><p>应用服务器与数据库服务器建立一个连接</p>
+</li>
+<li><p>数据库进程拿到请求sql</p>
+</li>
+<li><p>解析并生成执行计划，执行</p>
+</li>
+<li><p>读取数据到内存并进行逻辑处理</p>
+</li>
+<li><p>通过步骤一的连接，发送结果到客户端</p>
+</li>
+<li><p>关掉连接，释放资源</p>
+<p> <img src="https://img-blog.csdnimg.cn/20200310170936478.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RoaW5rV29u,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+</ol>
+<h2 id="3-大表数据查询，怎么优化"><a href="#3-大表数据查询，怎么优化" class="headerlink" title="3. 大表数据查询，怎么优化"></a>3. 大表数据查询，怎么优化</h2><ol>
+<li>优化shema、sql语句+索引；</li>
+<li>第二加缓存，memcached, redis；</li>
+<li>主从复制，读写分离；</li>
+<li>垂直拆分，根据你模块的耦合度，将一个大的系统分为多个小的系统，也就是分布式系统；</li>
+<li>水平切分，针对数据量大的表，这一步最麻烦，最能考验技术水平，要选择一个合理的sharding key, 为了有好的查询效率，表结构也要改动，做一定的冗余，应用也要改，sql中尽量带sharding key，将数据定位到限定的表上去查，而不是扫描全部的表；</li>
+</ol>
+<h2 id="4-超大分页怎么处理？"><a href="#4-超大分页怎么处理？" class="headerlink" title="4. 超大分页怎么处理？"></a>4. 超大分页怎么处理？</h2><p>超大的分页一般从两个方向上来解决.</p>
+<ul>
+<li>数据库层面,这也是我们主要集中关注的(虽然收效没那么大),类似于<code>select * from table where age &gt; 20 limit 1000000,10</code>这种查询其实也是有可以优化的余地的. 这条语句需要load1000000数据然后基本上全部丢弃,只取10条当然比较慢. 当时我们可以修改为<code>select * from table where id in (select id from table where age &gt; 20 limit 1000000,10)</code>.这样虽然也load了一百万的数据,但是由于索引覆盖,要查询的所有字段都在索引中,所以速度会很快. 同时如果ID连续的好,我们还可以<code>select * from table where id &gt; 1000000 limit 10</code>,效率也是不错的,优化的可能性有许多种,但是核心思想都一样,就是减少load的数据.</li>
+<li>从需求的角度减少这种请求…主要是不做类似的需求(直接跳转到几百万页之后的具体某一页.只允许逐页查看或者按照给定的路线走,这样可预测,可缓存)以及防止ID泄漏且连续被人恶意攻击.</li>
+</ul>
+<p>解决超大分页,其实主要是靠缓存,可预测性的提前查到内容,缓存至redis等k-V数据库中,直接返回即可.</p>
+<p>在阿里巴巴《Java开发手册》中,对超大分页的解决办法是类似于上面提到的第一种.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">【推荐】利用延迟关联或者子查询优化超多分页场景。 </span><br><span class="line"></span><br><span class="line">说明：MySQL并不是跳过<span class="keyword">offset</span>行，而是取<span class="keyword">offset</span><span class="operator">+</span>N行，然后返回放弃前<span class="keyword">offset</span>行，返回N行，那当<span class="keyword">offset</span>特别大的时候，效率就非常的低下，要么控制返回的总页数，要么对超过特定阈值的页数进行<span class="keyword">SQL</span>改写。 </span><br><span class="line"></span><br><span class="line">正例：先快速定位需要获取的id段，然后再关联： </span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> a.<span class="operator">*</span> <span class="keyword">FROM</span> 表<span class="number">1</span> a, (<span class="keyword">select</span> id <span class="keyword">from</span> 表<span class="number">1</span> <span class="keyword">where</span> 条件 LIMIT <span class="number">100000</span>,<span class="number">20</span> ) b <span class="keyword">where</span> a.id<span class="operator">=</span>b.id</span><br><span class="line"><span class="number">1234567</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="5-mysql-分页"><a href="#5-mysql-分页" class="headerlink" title="5.mysql 分页"></a>5.mysql 分页</h2><p>LIMIT 子句可以被用于强制 SELECT 语句返回指定的记录数。LIMIT 接受一个或两个数字参数。参数必须是一个整数常量。如果给定两个参数，第一个参数指定第一个返回记录行的偏移量，第二个参数指定返回记录行的最大数目。初始记录行的偏移量是 0(而不是 1)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM table LIMIT 5,10; &#x2F;&#x2F; 检索记录行 6-15 </span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+<p>为了检索从某一个偏移量到记录集的结束所有的记录行，可以指定第二个参数为 -1：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM table LIMIT 95,-1; &#x2F;&#x2F; 检索记录行 96-last. </span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+<p>如果只给定一个参数，它表示返回最大的记录行数目：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM table LIMIT 5; &#x2F;&#x2F;检索前 5 个记录行 </span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+<p>换句话说，LIMIT n 等价于 LIMIT 0,n。</p>
+<h2 id="6-慢查询日志"><a href="#6-慢查询日志" class="headerlink" title="6. 慢查询日志"></a>6. 慢查询日志</h2><blockquote>
+<p>用于记录执行时间超过某个临界值的SQL日志，用于快速定位慢查询，为我们的优化做参考。</p>
+</blockquote>
+<p>开启慢查询日志</p>
+<p>配置项：<code>slow_query_log</code></p>
+<p>可以使用<code>show variables like ‘slov_query_log’</code>查看是否开启，如果状态值为<code>OFF</code>，可以使用<code>set GLOBAL slow_query_log = on</code>来开启，它会在<code>datadir</code>下产生一个<code>xxx-slow.log</code>的文件。</p>
+<p>设置临界时间</p>
+<p>配置项：<code>long_query_time</code></p>
+<p>查看：<code>show VARIABLES like &#39;long_query_time&#39;</code>，单位秒</p>
+<p>设置：<code>set long_query_time=0.5</code></p>
+<p>实操时应该从长时间设置到短的时间，即将最慢的SQL优化掉</p>
+<p>查看日志，一旦SQL超过了我们设置的临界时间就会被记录到<code>xxx-slow.log</code>中</p>
+<h2 id="7-关心过业务系统里面的sql耗时吗？统计过慢查询吗？对慢查询都怎么优化过？"><a href="#7-关心过业务系统里面的sql耗时吗？统计过慢查询吗？对慢查询都怎么优化过？" class="headerlink" title="7. 关心过业务系统里面的sql耗时吗？统计过慢查询吗？对慢查询都怎么优化过？"></a>7. 关心过业务系统里面的sql耗时吗？统计过慢查询吗？对慢查询都怎么优化过？</h2><p>在业务系统中，除了使用主键进行的查询，其他的我都会在测试库上测试其耗时，慢查询的统计主要由运维在做，会定期将业务中的慢查询反馈给我们。</p>
+<p>慢查询的优化首先要搞明白慢的原因是什么？ 是查询条件没有命中索引？是load了不需要的数据列？还是数据量太大？</p>
+<p>所以优化也是针对这三个方向来的，</p>
+<ul>
+<li>首先分析语句，看看是否load了额外的数据，可能是查询了多余的行并且抛弃掉了，可能是加载了许多结果中并不需要的列，对语句进行分析以及重写。</li>
+<li>分析语句的执行计划，然后获得其使用索引的情况，之后修改语句或者修改索引，使得语句可以尽可能的命中索引。</li>
+<li>如果对语句的优化已经无法进行，可以考虑表中的数据量是否太大，如果是的话可以进行横向或者纵向的分表。</li>
+</ul>
+<h2 id="8-为什么要尽量设定一个主键？"><a href="#8-为什么要尽量设定一个主键？" class="headerlink" title="8. 为什么要尽量设定一个主键？"></a>8. 为什么要尽量设定一个主键？</h2><p>主键是数据库确保数据行在整张表唯一性的保障，即使业务上本张表没有主键，也建议添加一个自增长的ID列作为主键。设定了主键之后，在后续的删改查的时候可能更加快速以及确保操作数据范围安全。</p>
+<h2 id="9-主键使用自增ID还是UUID？"><a href="#9-主键使用自增ID还是UUID？" class="headerlink" title="9. 主键使用自增ID还是UUID？"></a>9. 主键使用自增ID还是UUID？</h2><p>推荐使用自增ID，不要使用UUID。</p>
+<p>因为在InnoDB存储引擎中，主键索引是作为聚簇索引存在的，也就是说，主键索引的B+树叶子节点上存储了主键索引以及全部的数据(按照顺序)，如果主键索引是自增ID，那么只需要不断向后排列即可，如果是UUID，由于到来的ID与原来的大小不确定，会造成非常多的数据插入，数据移动，然后导致产生很多的内存碎片，进而造成插入性能的下降。</p>
+<p>总之，在数据量大一些的情况下，用自增主键性能会好一些。</p>
+<p>关于主键是聚簇索引，如果没有主键，InnoDB会选择一个唯一键来作为聚簇索引，如果没有唯一键，会生成一个隐式的主键。</p>
+<h2 id="10-字段为什么要求定义为not-null？"><a href="#10-字段为什么要求定义为not-null？" class="headerlink" title="10. 字段为什么要求定义为not null？"></a>10. 字段为什么要求定义为not null？</h2><p>null值会占用更多的字节，且会在程序中造成很多与预期不符的情况。</p>
+<h2 id="11-如果要存储用户的密码散列，应该使用什么字段进行存储？"><a href="#11-如果要存储用户的密码散列，应该使用什么字段进行存储？" class="headerlink" title="11. 如果要存储用户的密码散列，应该使用什么字段进行存储？"></a>11. 如果要存储用户的密码散列，应该使用什么字段进行存储？</h2><p>密码散列，盐，用户身份证号等固定长度的字符串应该使用char而不是varchar来存储，这样可以节省空间且提高检索效率。</p>
+<h2 id="12-优化查询过程中的数据访问"><a href="#12-优化查询过程中的数据访问" class="headerlink" title="12. 优化查询过程中的数据访问"></a>12. 优化查询过程中的数据访问</h2><ul>
+<li>访问数据太多导致查询性能下降</li>
+<li>确定应用程序是否在检索大量超过需要的数据，可能是太多行或列</li>
+<li>确认MySQL服务器是否在分析大量不必要的数据行</li>
+<li>避免犯如下SQL语句错误</li>
+<li>查询不需要的数据。解决办法：使用limit解决</li>
+<li>多表关联返回全部列。解决办法：指定列名</li>
+<li>总是返回全部列。解决办法：避免使用SELECT *</li>
+<li>重复查询相同的数据。解决办法：可以缓存数据，下次直接读取缓存</li>
+<li>是否在扫描额外的记录。解决办法：</li>
+<li>使用explain进行分析，如果发现查询需要扫描大量的数据，但只返回少数的行，可以通过如下技巧去优化：</li>
+<li>使用索引覆盖扫描，把所有的列都放到索引中，这样存储引擎不需要回表获取对应行就可以返回结果。</li>
+<li>改变数据库和表的结构，修改数据表范式</li>
+<li>重写SQL语句，让优化器可以以更优的方式执行查询。</li>
+</ul>
+<h2 id="13-优化长难的查询语句"><a href="#13-优化长难的查询语句" class="headerlink" title="13. 优化长难的查询语句"></a>13. 优化长难的查询语句</h2><ul>
+<li>一个复杂查询还是多个简单查询</li>
+<li>MySQL内部每秒能扫描内存中上百万行数据，相比之下，响应数据给客户端就要慢得多</li>
+<li>使用尽可能小的查询是好的，但是有时将一个大的查询分解为多个小的查询是很有必要的。</li>
+<li>切分查询</li>
+<li>将一个大的查询分为多个小的相同的查询</li>
+<li>一次性删除1000万的数据要比一次删除1万，暂停一会的方案更加损耗服务器开销。</li>
+<li>分解关联查询，让缓存的效率更高。</li>
+<li>执行单个查询可以减少锁的竞争。</li>
+<li>在应用层做关联更容易对数据库进行拆分。</li>
+<li>查询效率会有大幅提升。</li>
+<li>较少冗余记录的查询。</li>
+</ul>
+<h2 id="14-优化特定类型的查询语句"><a href="#14-优化特定类型的查询语句" class="headerlink" title="14. 优化特定类型的查询语句"></a>14. 优化特定类型的查询语句</h2><ul>
+<li>count(*)会忽略所有的列，直接统计所有列数，不要使用count(列名)</li>
+<li>MyISAM中，没有任何where条件的count(*)非常快。</li>
+<li>当有where条件时，MyISAM的count统计不一定比其它引擎快。</li>
+<li>可以使用explain查询近似值，用近似值替代count(*)</li>
+<li>增加汇总表</li>
+<li>使用缓存</li>
+</ul>
+<h2 id="15-优化关联查询"><a href="#15-优化关联查询" class="headerlink" title="15. 优化关联查询"></a>15. 优化关联查询</h2><ul>
+<li>确定ON或者USING子句中是否有索引。</li>
+<li>确保GROUP BY和ORDER BY只有一个表中的列，这样MySQL才有可能使用索引。</li>
+</ul>
+<h2 id="16-优化子查询"><a href="#16-优化子查询" class="headerlink" title="16. 优化子查询"></a>16. 优化子查询</h2><ul>
+<li>用关联查询替代</li>
+<li>优化GROUP BY和DISTINCT</li>
+<li>这两种查询据可以使用索引来优化，是最有效的优化方法</li>
+<li>关联查询中，使用标识列分组的效率更高</li>
+<li>如果不需要ORDER BY，进行GROUP BY时加ORDER BY NULL，MySQL不会再进行文件排序。</li>
+<li>WITH ROLLUP超级聚合，可以挪到应用程序处理</li>
+</ul>
+<h2 id="17-优化LIMIT分页"><a href="#17-优化LIMIT分页" class="headerlink" title="17. 优化LIMIT分页"></a>17. 优化LIMIT分页</h2><ul>
+<li>LIMIT偏移量大的时候，查询效率较低</li>
+<li>可以记录上次查询的最大ID，下次查询时直接根据该ID来查询</li>
+</ul>
+<h2 id="18-优化UNION查询"><a href="#18-优化UNION查询" class="headerlink" title="18. 优化UNION查询"></a>18. 优化UNION查询</h2><ul>
+<li>UNION ALL的效率高于UNION</li>
+</ul>
+<h2 id="19-优化WHERE子句"><a href="#19-优化WHERE子句" class="headerlink" title="19. 优化WHERE子句"></a>19. 优化WHERE子句</h2><p>解题方法</p>
+<p>对于此类考题，先说明如何定位低效SQL语句，然后根据SQL语句可能低效的原因做排查，先从索引着手，如果索引没有问题，考虑以上几个方面，数据访问的问题，长难查询句的问题还是一些特定类型优化的问题，逐一回答。</p>
+<p>SQL语句优化的一些方法？</p>
+<ul>
+<li>1.对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引。</li>
+<li>2.应尽量避免在 where 子句中对字段进行 null 值判断，否则将导致引擎放弃使用索引而进行全表扫描，如：</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> id <span class="keyword">from</span> t <span class="keyword">where</span> num <span class="keyword">is</span> <span class="keyword">null</span></span><br><span class="line"><span class="comment">-- 可以在num上设置默认值0，确保表中num列没有null值，然后这样查询：</span></span><br><span class="line"><span class="keyword">select</span> id <span class="keyword">from</span> t <span class="keyword">where</span> num<span class="operator">=</span></span><br><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>3.应尽量避免在 where 子句中使用!=或&lt;&gt;操作符，否则引擎将放弃使用索引而进行全表扫描。</li>
+<li>4.应尽量避免在 where 子句中使用or 来连接条件，否则将导致引擎放弃使用索引而进行全表扫描，如：</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> id <span class="keyword">from</span> t <span class="keyword">where</span> num<span class="operator">=</span><span class="number">10</span> <span class="keyword">or</span> num<span class="operator">=</span><span class="number">20</span></span><br><span class="line"><span class="comment">-- 可以这样查询：</span></span><br><span class="line"><span class="keyword">select</span> id <span class="keyword">from</span> t <span class="keyword">where</span> num<span class="operator">=</span><span class="number">10</span> <span class="keyword">union</span> <span class="keyword">all</span> <span class="keyword">select</span> id <span class="keyword">from</span> t <span class="keyword">where</span> num<span class="operator">=</span><span class="number">20</span></span><br><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>5.in 和 not in 也要慎用，否则会导致全表扫描，如：</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> id <span class="keyword">from</span> t <span class="keyword">where</span> num <span class="keyword">in</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>) </span><br><span class="line"><span class="comment">-- 对于连续的数值，能用 between 就不要用 in 了：</span></span><br><span class="line"><span class="keyword">select</span> id <span class="keyword">from</span> t <span class="keyword">where</span> num <span class="keyword">between</span> <span class="number">1</span> <span class="keyword">and</span> <span class="number">3</span></span><br><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>6.下面的查询也将导致全表扫描：select id from t where name like ‘%李%’若要提高效率，可以考虑全文检索。</li>
+<li>7.如果在 where 子句中使用参数，也会导致全表扫描。因为SQL只有在运行时才会解析局部变量，但优化程序不能将访问计划的选择推迟到运行时；它必须在编译时进行选择。然 而，如果在编译时建立访问计划，变量的值还是未知的，因而无法作为索引选择的输入项。如下面语句将进行全表扫描：</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> id <span class="keyword">from</span> t <span class="keyword">where</span> num<span class="operator">=</span><span class="variable">@num</span></span><br><span class="line"><span class="comment">-- 可以改为强制查询使用索引：</span></span><br><span class="line"><span class="keyword">select</span> id <span class="keyword">from</span> t <span class="keyword">with</span>(index(索引名)) <span class="keyword">where</span> num<span class="operator">=</span><span class="variable">@num</span></span><br><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>8.应尽量避免在 where 子句中对字段进行表达式操作，这将导致引擎放弃使用索引而进行全表扫描。如：</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> id <span class="keyword">from</span> t <span class="keyword">where</span> num<span class="operator">/</span><span class="number">2</span><span class="operator">=</span><span class="number">100</span></span><br><span class="line"><span class="comment">-- 应改为:</span></span><br><span class="line"><span class="keyword">select</span> id <span class="keyword">from</span> t <span class="keyword">where</span> num<span class="operator">=</span><span class="number">100</span><span class="operator">*</span><span class="number">2</span></span><br><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>9.应尽量避免在where子句中对字段进行函数操作，这将导致引擎放弃使用索引而进行全表扫描。如：</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> id <span class="keyword">from</span> t <span class="keyword">where</span> <span class="built_in">substring</span>(name,<span class="number">1</span>,<span class="number">3</span>)<span class="operator">=</span>’abc’</span><br><span class="line"><span class="comment">-- name以abc开头的id应改为:</span></span><br><span class="line"><span class="keyword">select</span> id <span class="keyword">from</span> t <span class="keyword">where</span> name <span class="keyword">like</span> ‘abc<span class="operator">%</span>’</span><br><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>10.不要在 where 子句中的“=”左边进行函数、算术运算或其他表达式运算，否则系统将可能无法正确使用索引。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">rain</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/interview/sql/">http://example.com/interview/sql/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Kovui</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/sql/">sql</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/interview/LSD/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">large scale data</div></div></a></div><div class="next-post pull-right"><a href="/interview/linux/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Linux</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">rain</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">36</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xbdh" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:1344535251@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80-%E5%B8%B8%E7%94%A8SQL%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.</span> <span class="toc-text">一. 常用SQL语句</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-SQL%E8%AF%AD%E5%8F%A5%E4%B8%BB%E8%A6%81%E5%88%86%E4%B8%BA%E5%93%AA%E5%87%A0%E7%B1%BB"><span class="toc-number">1.1.</span> <span class="toc-text">1. SQL语句主要分为哪几类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%B6%85%E9%94%AE%E3%80%81%E5%80%99%E9%80%89%E9%94%AE%E3%80%81%E4%B8%BB%E9%94%AE%E3%80%81%E5%A4%96%E9%94%AE%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">2. 超键、候选键、主键、外键分别是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-SQL-%E7%BA%A6%E6%9D%9F%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D%EF%BC%9F"><span class="toc-number">1.3.</span> <span class="toc-text">3. SQL 约束有哪几种？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%85%AD%E7%A7%8D%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.4.</span> <span class="toc-text">4. 六种关联查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%A1%A8%E8%BF%9E%E6%8E%A5%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="toc-number">1.5.</span> <span class="toc-text">4. 表连接面试题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E4%BB%80%E4%B9%88%E6%98%AF%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.6.</span> <span class="toc-text">5. 什么是子查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%AD%90%E6%9F%A5%E8%AF%A2%E7%9A%84%E4%B8%89%E7%A7%8D%E6%83%85%E5%86%B5"><span class="toc-number">1.7.</span> <span class="toc-text">6. 子查询的三种情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-mysql%E4%B8%AD-in-%E5%92%8C-exists-%E5%8C%BA%E5%88%AB"><span class="toc-number">1.8.</span> <span class="toc-text">7. mysql中 in 和 exists 区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-varchar%E4%B8%8Echar%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.9.</span> <span class="toc-text">8. varchar与char的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-varchar-50-%E4%B8%AD50%E7%9A%84%E6%B6%B5%E4%B9%89"><span class="toc-number">1.10.</span> <span class="toc-text">10. varchar(50)中50的涵义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-int-20-%E4%B8%AD20%E7%9A%84%E6%B6%B5%E4%B9%89"><span class="toc-number">1.11.</span> <span class="toc-text">11. int(20)中20的涵义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-mysql%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.12.</span> <span class="toc-text">12. mysql为什么这么设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-mysql%E4%B8%ADint-10-%E5%92%8Cchar-10-%E4%BB%A5%E5%8F%8Avarchar-10-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.13.</span> <span class="toc-text">13. mysql中int(10)和char(10)以及varchar(10)的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-FLOAT%E5%92%8CDOUBLE%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.14.</span> <span class="toc-text">14. FLOAT和DOUBLE的区别是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-drop%E3%80%81delete%E4%B8%8Etruncate%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.15.</span> <span class="toc-text">15. drop、delete与truncate的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-UNION%E4%B8%8EUNION-ALL%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">1.16.</span> <span class="toc-text">16. UNION与UNION ALL的区别？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C-SQL%E4%BC%98%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text">二. SQL优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%A6%82%E4%BD%95%E5%AE%9A%E4%BD%8D%E5%8F%8A%E4%BC%98%E5%8C%96SQL%E8%AF%AD%E5%8F%A5%E7%9A%84%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98%EF%BC%9F%E5%88%9B%E5%BB%BA%E7%9A%84%E7%B4%A2%E5%BC%95%E6%9C%89%E6%B2%A1%E6%9C%89%E8%A2%AB%E4%BD%BF%E7%94%A8%E5%88%B0-%E6%88%96%E8%80%85%E8%AF%B4%E6%80%8E%E4%B9%88%E6%89%8D%E5%8F%AF%E4%BB%A5%E7%9F%A5%E9%81%93%E8%BF%99%E6%9D%A1%E8%AF%AD%E5%8F%A5%E8%BF%90%E8%A1%8C%E5%BE%88%E6%85%A2%E7%9A%84%E5%8E%9F%E5%9B%A0%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">1. 如何定位及优化SQL语句的性能问题？创建的索引有没有被使用到?或者说怎么才可以知道这条语句运行很慢的原因？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-SQL%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%EF%BC%9F"><span class="toc-number">2.2.</span> <span class="toc-text">2. SQL的生命周期？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%A4%A7%E8%A1%A8%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2%EF%BC%8C%E6%80%8E%E4%B9%88%E4%BC%98%E5%8C%96"><span class="toc-number">2.3.</span> <span class="toc-text">3. 大表数据查询，怎么优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%B6%85%E5%A4%A7%E5%88%86%E9%A1%B5%E6%80%8E%E4%B9%88%E5%A4%84%E7%90%86%EF%BC%9F"><span class="toc-number">2.4.</span> <span class="toc-text">4. 超大分页怎么处理？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-mysql-%E5%88%86%E9%A1%B5"><span class="toc-number">2.5.</span> <span class="toc-text">5.mysql 分页</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%85%A2%E6%9F%A5%E8%AF%A2%E6%97%A5%E5%BF%97"><span class="toc-number">2.6.</span> <span class="toc-text">6. 慢查询日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E5%85%B3%E5%BF%83%E8%BF%87%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E9%87%8C%E9%9D%A2%E7%9A%84sql%E8%80%97%E6%97%B6%E5%90%97%EF%BC%9F%E7%BB%9F%E8%AE%A1%E8%BF%87%E6%85%A2%E6%9F%A5%E8%AF%A2%E5%90%97%EF%BC%9F%E5%AF%B9%E6%85%A2%E6%9F%A5%E8%AF%A2%E9%83%BD%E6%80%8E%E4%B9%88%E4%BC%98%E5%8C%96%E8%BF%87%EF%BC%9F"><span class="toc-number">2.7.</span> <span class="toc-text">7. 关心过业务系统里面的sql耗时吗？统计过慢查询吗？对慢查询都怎么优化过？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%B0%BD%E9%87%8F%E8%AE%BE%E5%AE%9A%E4%B8%80%E4%B8%AA%E4%B8%BB%E9%94%AE%EF%BC%9F"><span class="toc-number">2.8.</span> <span class="toc-text">8. 为什么要尽量设定一个主键？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E4%B8%BB%E9%94%AE%E4%BD%BF%E7%94%A8%E8%87%AA%E5%A2%9EID%E8%BF%98%E6%98%AFUUID%EF%BC%9F"><span class="toc-number">2.9.</span> <span class="toc-text">9. 主键使用自增ID还是UUID？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E5%AD%97%E6%AE%B5%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%B1%82%E5%AE%9A%E4%B9%89%E4%B8%BAnot-null%EF%BC%9F"><span class="toc-number">2.10.</span> <span class="toc-text">10. 字段为什么要求定义为not null？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E5%A6%82%E6%9E%9C%E8%A6%81%E5%AD%98%E5%82%A8%E7%94%A8%E6%88%B7%E7%9A%84%E5%AF%86%E7%A0%81%E6%95%A3%E5%88%97%EF%BC%8C%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8%E4%BB%80%E4%B9%88%E5%AD%97%E6%AE%B5%E8%BF%9B%E8%A1%8C%E5%AD%98%E5%82%A8%EF%BC%9F"><span class="toc-number">2.11.</span> <span class="toc-text">11. 如果要存储用户的密码散列，应该使用什么字段进行存储？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E4%BC%98%E5%8C%96%E6%9F%A5%E8%AF%A2%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE"><span class="toc-number">2.12.</span> <span class="toc-text">12. 优化查询过程中的数据访问</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E4%BC%98%E5%8C%96%E9%95%BF%E9%9A%BE%E7%9A%84%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5"><span class="toc-number">2.13.</span> <span class="toc-text">13. 优化长难的查询语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%E4%BC%98%E5%8C%96%E7%89%B9%E5%AE%9A%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5"><span class="toc-number">2.14.</span> <span class="toc-text">14. 优化特定类型的查询语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-%E4%BC%98%E5%8C%96%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.15.</span> <span class="toc-text">15. 优化关联查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-%E4%BC%98%E5%8C%96%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.16.</span> <span class="toc-text">16. 优化子查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-%E4%BC%98%E5%8C%96LIMIT%E5%88%86%E9%A1%B5"><span class="toc-number">2.17.</span> <span class="toc-text">17. 优化LIMIT分页</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-%E4%BC%98%E5%8C%96UNION%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.18.</span> <span class="toc-text">18. 优化UNION查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-%E4%BC%98%E5%8C%96WHERE%E5%AD%90%E5%8F%A5"><span class="toc-number">2.19.</span> <span class="toc-text">19. 优化WHERE子句</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/interview/ds/" title="datab structure"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="datab structure"/></a><div class="content"><a class="title" href="/interview/ds/" title="datab structure">datab structure</a><time datetime="2021-03-11T15:06:07.000Z" title="发表于 2021-03-11 23:06:07">2021-03-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/interview/k8s/" title="Kubernetes"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Kubernetes"/></a><div class="content"><a class="title" href="/interview/k8s/" title="Kubernetes">Kubernetes</a><time datetime="2021-03-11T14:48:24.000Z" title="发表于 2021-03-11 22:48:24">2021-03-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/interview/docker/" title="Docker"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Docker"/></a><div class="content"><a class="title" href="/interview/docker/" title="Docker">Docker</a><time datetime="2021-03-11T14:48:19.000Z" title="发表于 2021-03-11 22:48:19">2021-03-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/interview/LSD/" title="large scale data"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="large scale data"/></a><div class="content"><a class="title" href="/interview/LSD/" title="large scale data">large scale data</a><time datetime="2021-03-11T14:48:17.000Z" title="发表于 2021-03-11 22:48:17">2021-03-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/interview/sql/" title="SQL"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SQL"/></a><div class="content"><a class="title" href="/interview/sql/" title="SQL">SQL</a><time datetime="2021-03-11T14:48:15.000Z" title="发表于 2021-03-11 22:48:15">2021-03-11</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By rain</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
